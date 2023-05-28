@@ -38,6 +38,7 @@ export const AddProduct = () => {
   const {enqueueSnackbar} = useSnackbar();
   /**custom hooks */
   const {generate, data, error, loading} = useGenerate();
+  console.log(error);
 
   const [generatedProductDetails, generatedImage] = data || [];
 
@@ -185,10 +186,10 @@ export const AddProduct = () => {
               />
             </Box>
 
-            <Box mt={1}>
+            <Box mt={3}>
               <Button
                 startIcon={<AutoFixHigh />}
-                variant="outlined"
+                variant="contained"
                 sx={{
                   px: 3,
                   py: 1.5,
@@ -197,7 +198,7 @@ export const AddProduct = () => {
                   textTransform: 'none',
                   fontSize: 15,
 
-                  '&:hover': {background: gradient.primary, color: '#fff'},
+                  background: gradient.primary,
                 }}
                 onClick={() => {
                   for (let product of Object.keys(productDetails)) {
@@ -226,6 +227,7 @@ export const AddProduct = () => {
             </Typography>
             <UploadBox
               onFileUpload={(files: FileList) => {
+                return files;
                 // var oFReader = new FileReader();
                 // oFReader.readAsDataURL(files[0] as Blob);
                 // oFReader.onload = function (oFREvent) {
