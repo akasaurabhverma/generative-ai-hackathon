@@ -12,6 +12,7 @@ import {categoryList} from '../../pages';
 import {Product} from '../description';
 import {DemoModel} from '../nerf/demo';
 import {InputField} from '../ui';
+import {ImageViewer} from './image-full-view-modal';
 
 interface GeneratedDataProps extends Product {
   image: string;
@@ -21,6 +22,7 @@ interface GeneratedDataProps extends Product {
 
 export const GeneratedData = (props: GeneratedDataProps) => {
   const [demoModal, setDemoModal] = useState(false);
+  const [fullScreen, setFullScreen] = useState(false);
   return (
     <>
       <Box
@@ -45,7 +47,7 @@ export const GeneratedData = (props: GeneratedDataProps) => {
             <Button startIcon={<ContactsOutlined />}>Mockup</Button>
           </Box>
 
-          <Box display={'flex'} id="upload-and-preview">
+          <Box display={'flex'}>
             <Box
               width="100px"
               height="100px"
@@ -58,7 +60,9 @@ export const GeneratedData = (props: GeneratedDataProps) => {
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
+                cursor: 'pointer',
               }}
+              onClick={() => setFullScreen(true)}
             ></Box>
             <Box
               width="100px"
@@ -177,6 +181,9 @@ export const GeneratedData = (props: GeneratedDataProps) => {
       </Box>
 
       {demoModal && <DemoModel onClose={() => setDemoModal(false)} />}
+      {fullScreen && (
+        <ImageViewer onClose={() => setFullScreen(false)} image={props.image} />
+      )}
     </>
   );
 };

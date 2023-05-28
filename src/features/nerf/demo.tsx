@@ -7,7 +7,7 @@ interface DemoModelProps {
 export const DemoModel: React.FC<DemoModelProps> = (props) => {
   return (
     <>
-      <Dialog open={true} fullScreen>
+      <Dialog open fullScreen>
         <IconButton
           sx={{position: 'absolute', m: 2, right: 0, top: 0, zIndex: 100}}
           onClick={() => {

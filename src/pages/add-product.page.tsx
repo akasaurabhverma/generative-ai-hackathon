@@ -240,12 +240,12 @@ export const AddProduct = () => {
       )}
       {data && (
         <GeneratedData
-          category={productDetails.productCategory as string}
-          description={generatedProductDetails.description}
-          heading={generatedProductDetails.heading}
-          key_points={generatedProductDetails.keyPoints}
+          category={productDetails?.productCategory as string}
+          description={generatedProductDetails?.description}
+          heading={generatedProductDetails?.heading}
+          key_points={generatedProductDetails?.keyPoints}
           image={generatedImage}
-          productID={productDetails.productId}
+          productID={productDetails?.productId}
         />
       )}
     </>
