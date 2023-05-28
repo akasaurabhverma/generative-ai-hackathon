@@ -18,7 +18,10 @@ export const UploadBox = (props: UploadBoxProps) => {
         hidden
         accept="image/*"
         type="file"
-        onChange={(e) => props.onFileUpload(e.target.files as FileList)}
+        onChange={(e) => {
+          e.target.files?.length &&
+            props.onFileUpload(e.target.files as FileList);
+        }}
         multiple={Boolean(props.allMultipleUpload)}
       />
       <Box textAlign={'center'}>
