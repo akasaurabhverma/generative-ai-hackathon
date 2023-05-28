@@ -1,23 +1,17 @@
-import {Button, Dialog, IconButton} from '@mui/material';
+import {Dialog, IconButton} from '@mui/material';
 import {Close} from '@mui/icons-material';
-import {useState} from 'react';
 
-export const DemoModel: React.FC = () => {
-  const [view, setView] = useState(false);
+interface DemoModelProps {
+  onClose: () => void;
+}
+export const DemoModel: React.FC<DemoModelProps> = (props) => {
   return (
     <>
-      <Button
-        onClick={() => {
-          setView((view) => !view);
-        }}
-      >
-        Show 3D Demo Model
-      </Button>
-      <Dialog open={view} fullScreen>
+      <Dialog open={true} fullScreen>
         <IconButton
           sx={{position: 'absolute', m: 2, right: 0, top: 0, zIndex: 100}}
           onClick={() => {
-            setView((view) => !view);
+            props.onClose();
           }}
         >
           <Close />

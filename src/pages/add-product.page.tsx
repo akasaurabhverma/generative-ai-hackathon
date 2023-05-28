@@ -207,8 +207,9 @@ export const AddProduct = () => {
                         message: 'please fill the required field ',
                         variant: 'error',
                       });
-                    generate(productDetails);
                   }
+
+                  generate(productDetails);
                 }}
               >
                 Generate
