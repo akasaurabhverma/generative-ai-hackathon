@@ -2,7 +2,7 @@
 import {Configuration, OpenAIApi} from 'openai';
 
 const apiKey = import.meta.env.VITE_OPENAI_SECURITY_KEY;
-const organization = import.meta.env.VITE_OPENAI_ORG_ID;
+// const organization = import.meta.env.VITE_OPENAI_ORG_ID;
 
 export interface Product {
   heading: string;
@@ -29,7 +29,7 @@ export async function handleGetDescription(
     ) as Product;
 
     return result;
-  } catch (error: any) {
+  } catch (error) {
     console.log(error);
   }
 }
