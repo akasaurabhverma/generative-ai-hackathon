@@ -82,7 +82,7 @@ export const GeneratedData = (props: GeneratedDataProps) => {
               <Typography color="primary" variant="h6" fontWeight={600}>
                 Product ID
               </Typography>
-              <InputField value={props.productID} readOnly />
+              <InputField value={props?.productID} readOnly />
             </Box>
             <Box flexBasis={'49%'}>
               <Typography color="primary" variant="h6" fontWeight={600}>
@@ -91,7 +91,7 @@ export const GeneratedData = (props: GeneratedDataProps) => {
               <Box>
                 <Autocomplete
                   readOnly
-                  value={props.category}
+                  value={props?.category}
                   disablePortal
                   id="combo-box-demo"
                   options={categoryList}
@@ -123,10 +123,10 @@ export const GeneratedData = (props: GeneratedDataProps) => {
               borderRadius={1}
             >
               <Typography variant="h6" fontWeight={600}>
-                {props.heading}
+                {props?.heading}
               </Typography>
 
-              <Typography>{props.description}</Typography>
+              <Typography>{props?.description}</Typography>
 
               <ul>
                 {Children.toArray(
