@@ -13,6 +13,10 @@ const initialState: ResponseGenerateData = {
   loading: false,
 };
 
+const RM_API_KEY =
+  // @ts-ignore
+  process.env.VITE_RM_API_KEY ?? import.meta.env.VITE_RM_API_KEY;
+
 export const useGenerate = () => {
   const [responseGenerateData, setData] =
     useState<ResponseGenerateData>(initialState);
@@ -26,7 +30,7 @@ export const useGenerate = () => {
       fetch('https://api.remove.bg/v1.0/removebg', {
         method: 'POST',
         headers: {
-          'X-Api-Key': import.meta.env.VITE_RM_API_KEY,
+          'X-Api-Key': RM_API_KEY,
         },
         body: formData,
       })

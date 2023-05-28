@@ -1,7 +1,10 @@
 // import type {AxiosPromise, AxiosResponse} from 'axios';
 import {Configuration, OpenAIApi} from 'openai';
 
-const apiKey = import.meta.env.VITE_OPENAI_SECURITY_KEY;
+const apiKey =
+  // @ts-ignore
+  process?.env.VITE_OPENAI_SECURITY_KEY ??
+  import.meta.env.VITE_OPENAI_SECURITY_KEY;
 // const organization = import.meta.env.VITE_OPENAI_ORG_ID;
 
 export interface Product {
@@ -36,7 +39,7 @@ export async function handleGetDescription(
 
 function promptFor(product: string): string {
   return `Generate catchy heading, key points, and descriptions about the product "${product}" for an E-commerce platform. Return it as a JSON object.
-  Make sure the JSON result follows the format: 
+  Make sure the JSON result follows the format:
   interface product {
     heading: string;
     description: string;
