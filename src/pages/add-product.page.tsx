@@ -82,7 +82,7 @@ export const AddProduct = () => {
                   });
 
                   /**file preview */
-                  var oFReader = new FileReader();
+                  const oFReader = new FileReader();
                   oFReader.readAsDataURL(files[0] as Blob);
                   oFReader.onload = function (oFREvent) {
                     setImgSrc(oFREvent?.target?.result);
@@ -201,7 +201,8 @@ export const AddProduct = () => {
                   background: gradient.primary,
                 }}
                 onClick={() => {
-                  for (let product of Object.keys(productDetails)) {
+                  for (const product of Object.keys(productDetails)) {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     //@ts-ignore
                     if (!productDetails[product])
                       return enqueueSnackbar({
