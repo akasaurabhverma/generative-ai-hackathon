@@ -28,6 +28,7 @@ export interface ProductDetails {
   productId: string;
   productCategory: null | string;
   productDescription: string;
+  prompt: string;
 }
 
 export const AddProduct = () => {
@@ -40,13 +41,14 @@ export const AddProduct = () => {
   const {generate, data, error, loading} = useGenerate();
   console.log(error);
 
-  const [generatedProductDetails, generatedImage] = data || [];
+  const [generatedProductDetails, generatedImage, generatedMockup] = data || [];
 
   const [productDetails, setDetails] = useState<ProductDetails>({
     productId: '',
     productCategory: null,
     productDescription: '',
     image: null,
+    prompt: '',
   });
 
   console.log(data);
@@ -68,6 +70,54 @@ export const AddProduct = () => {
             flexBasis={{sm: '100%', lg: '50%'}}
             // border="1px solid red"
           >
+            <Box display="flex" justifyContent={'space-between'} mt={2}>
+              <Box flexBasis={'49%'}>
+                <Typography
+                  color="primary"
+                  variant="h6"
+                  fontWeight={600}
+                  mb={1}
+                >
+                  Product ID
+                </Typography>
+                <InputField
+                  value={productDetails.productId}
+                  onChange={(e) =>
+                    setDetails({
+                      ...productDetails,
+                      productId: e.target.value,
+                    })
+                  }
+                />
+              </Box>
+              <Box flexBasis={'49%'}>
+                <Typography
+                  color="primary"
+                  variant="h6"
+                  fontWeight={600}
+                  mb={1}
+                >
+                  Category
+                </Typography>
+                <Box>
+                  <Autocomplete
+                    value={productDetails.productCategory}
+                    onChange={(_e, value) =>
+                      setDetails({
+                        ...productDetails,
+                        productCategory: value,
+                      })
+                    }
+                    disablePortal
+                    id="combo-box-demo"
+                    options={categoryList}
+                    getOptionLabel={(option) => option}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </Box>
+              </Box>
+            </Box>
+
             <Typography color="primary" fontWeight={600} variant="h6" mb={1}>
               Product Images
             </Typography>
@@ -121,52 +171,20 @@ export const AddProduct = () => {
                 mx={1}
               ></Box>
             </Box>
-            <Box display="flex" justifyContent={'space-between'} mt={2}>
-              <Box flexBasis={'49%'}>
-                <Typography
-                  color="primary"
-                  variant="h6"
-                  fontWeight={600}
-                  mb={1}
-                >
-                  Product ID
-                </Typography>
-                <InputField
-                  value={productDetails.productId}
-                  onChange={(e) =>
-                    setDetails({
-                      ...productDetails,
-                      productId: e.target.value,
-                    })
-                  }
-                />
-              </Box>
-              <Box flexBasis={'49%'}>
-                <Typography
-                  color="primary"
-                  variant="h6"
-                  fontWeight={600}
-                  mb={1}
-                >
-                  Category
-                </Typography>
-                <Box>
-                  <Autocomplete
-                    value={productDetails.productCategory}
-                    onChange={(_e, value) =>
-                      setDetails({
-                        ...productDetails,
-                        productCategory: value,
-                      })
-                    }
-                    disablePortal
-                    id="combo-box-demo"
-                    options={categoryList}
-                    getOptionLabel={(option) => option}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-                </Box>
-              </Box>
+
+            <Box mt={2}>
+              <Typography color="primary" variant="h6" fontWeight={600} mb={1}>
+                Prompt for Mockup
+              </Typography>
+              <InputField
+                value={productDetails.prompt}
+                onChange={(e) =>
+                  setDetails({
+                    ...productDetails,
+                    prompt: e.target.value,
+                  })
+                }
+              />
             </Box>
 
             <Box mt={2}>
@@ -221,6 +239,7 @@ export const AddProduct = () => {
           <Box
             id="Generate-3D-model"
             flexBasis={{sm: '100%', lg: '50%'}}
+
             // border="1px solid red"
           >
             <Typography color="primary" fontWeight={600} variant="h6" mb={1}>
@@ -246,6 +265,7 @@ export const AddProduct = () => {
           heading={generatedProductDetails?.heading}
           key_points={generatedProductDetails?.keyPoints}
           image={generatedImage}
+          mockupImage={generatedMockup}
           productID={productDetails?.productId}
         />
       )}

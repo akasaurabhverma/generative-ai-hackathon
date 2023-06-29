@@ -18,6 +18,7 @@ interface GeneratedDataProps extends Product {
   image: string;
   productID: string;
   category: string;
+  mockupImage: boolean;
 }
 
 export const GeneratedData = (props: GeneratedDataProps) => {
@@ -71,6 +72,13 @@ export const GeneratedData = (props: GeneratedDataProps) => {
               borderRadius={1}
               bgcolor="#eee"
               mx={1}
+              sx={{
+                backgroundImage: `url(${props.mockupImage})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                cursor: 'pointer',
+              }}
             ></Box>
             <Box
               width="100px"
