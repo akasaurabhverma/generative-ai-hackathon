@@ -1,11 +1,13 @@
 import {useState} from 'react';
-import {handleGetDescription} from '../../features/description';
+import {Product, handleGetDescription} from '../../features/description';
 import {ProductDetails} from '../add-product.page';
 
 interface ResponseGenerateData {
   loading: boolean;
-  data: any;
-  error: any;
+  data:
+    | [Product | undefined | null, string | undefined, string | undefined]
+    | null;
+  error: unknown;
 }
 const initialState: ResponseGenerateData = {
   data: null,

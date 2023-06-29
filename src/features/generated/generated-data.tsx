@@ -18,7 +18,7 @@ interface GeneratedDataProps extends Product {
   image: string;
   productID: string;
   category: string;
-  mockupImage: boolean;
+  mockupImage: string;
 }
 
 export const GeneratedData = (props: GeneratedDataProps) => {

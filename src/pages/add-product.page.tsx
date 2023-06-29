@@ -7,6 +7,8 @@ import {UploadBox} from '../features/upload';
 import {gradient} from '../theme-customization';
 import {useGenerate} from './hooks';
 import {useSnackbar} from 'notistack';
+import {Product} from '../features/description';
+
 export const categoryList = [
   'Electronics and Gadgets',
   'Fashion and Apparel',
@@ -41,7 +43,8 @@ export const AddProduct = () => {
   const {generate, data, error, loading} = useGenerate();
   console.log(error);
 
-  const [generatedProductDetails, generatedImage, generatedMockup] = data || [];
+  const [generatedProductDetails, generatedImage, generatedMockup] =
+    (data as [Product, string, string]) ?? [];
 
   const [productDetails, setDetails] = useState<ProductDetails>({
     productId: '',
