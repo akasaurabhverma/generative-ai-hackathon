@@ -18,7 +18,7 @@ export const backgroundColor = {
 /**don't change the color in this theme*/
 export const theme = createTheme({
   typography: {
-    fontFamily: ['Montserrat', 'sans-serif'].join(','),
+    fontFamily: ['Unbounded', 'cursive'].join(','),
   },
   palette: {
     primary: {
